@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ControleDeVistoria.Domain.Entities;
-using ControleDeVistoria.Infra.IoC.Repository.Interface;
-using ControleDeVistoria.Infra.IoC.Data;
+using ControleDeVistoria.Domain.Interface;
+using VControleDeVistoria.Infra.Data.Context;
 
 namespace ControleDeVistoria.Infra.IoC.Repository
 {
@@ -50,11 +50,9 @@ namespace ControleDeVistoria.Infra.IoC.Repository
 
         }
 
-        public bool Excluir(int id)
+        public bool Excluir(Locatario locatario)
         {
-            Locatario locatarioDb = BuscarPorFK(id);
-
-            _context.Locatarios.Remove(locatarioDb);
+            _context.Locatarios.Remove(locatario);
             _context.SaveChanges();
 
             return true;

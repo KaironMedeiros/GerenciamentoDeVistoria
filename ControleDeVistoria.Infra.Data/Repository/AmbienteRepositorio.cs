@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ControleDeVistoria.Domain.Entities;
-using ControleDeVistoria.Infra.IoC.Data;
-using ControleDeVistoria.Infra.IoC.Repository.Interface;
+using ControleDeVistoria.Domain.Interface;
+using VControleDeVistoria.Infra.Data.Context;
 
-namespace ControleDeVistoria.Infra.IoC.Repository
+namespace ControleDeVistoria.Infra.Data.Repository
 {
 
     public class AmbienteRepositorio : IAmbienteRepositorio
@@ -32,10 +32,8 @@ namespace ControleDeVistoria.Infra.IoC.Repository
             return _context.Ambiente.ToList();
         }*/
 
-        public bool Excluir(int id)
+        public bool Excluir(Ambiente ambienteDb)
         {
-            Ambiente ambienteDb = BuscarPorId(id);
-
             _context.Ambientes.Remove(ambienteDb);
             _context.SaveChanges();
 

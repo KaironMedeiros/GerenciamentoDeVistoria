@@ -1,6 +1,6 @@
 ﻿using ControleDeVistoria.Domain.Entities;
 
-namespace ControleDeVistoria.Infra.IoC.Repository.Interface
+namespace ControleDeVistoria.Domain.Interface
 {
     public interface ILocatarioRepositorio
     {
@@ -9,6 +9,6 @@ namespace ControleDeVistoria.Infra.IoC.Repository.Interface
         Locatario Atualizar(Locatario locatario);
         Locatario Adicionar(Locatario locatario);
         bool IdExiste(int id);
-        bool Excluir(int id);
+        bool Excluir(Locatario locatario);
     }
 }

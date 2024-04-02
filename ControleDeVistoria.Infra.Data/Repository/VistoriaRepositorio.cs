@@ -1,13 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ControleDeVistoria.Domain.Entities;
-using ControleDeVistoria.Infra.IoC.Repository.Interface;
-using ControleDeVistoria.Infra.IoC.Data;
+using ControleDeVistoria.Domain.Interface;
+using VControleDeVistoria.Infra.Data.Context;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using ControleDeVistoria.Infra.Data.IdentityData.Data;
 
 namespace ControleDeVistoria.Infra.IoC.Repository
 {
     public class VistoriaRepositorio : IVistoriaRepositorio
     {
         private readonly VistoriaContext _context;
+        private readonly UserManager<ControleDeVistoriaIdentityUser> _userManager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public VistoriaRepositorio(VistoriaContext context)
         {
@@ -64,9 +69,8 @@ namespace ControleDeVistoria.Infra.IoC.Repository
             return _context.Ambientes.Where(x => x.VistoriaId == vistoriaId).ToList();
         }
 
-        public bool Excluir(int id)
+        public bool Excluir(Vistoria vistoria)
         {
-            Vistoria vistoria = BuscarPorId(id);
             _context.Remove(vistoria);
             _context.SaveChanges();
 
@@ -81,7 +85,8 @@ namespace ControleDeVistoria.Infra.IoC.Repository
 
         public ICollection<Vistoria> BuscarPorUsuario()
         {
-            return _context.Vistorias.Include(x => x.Imovel.Endereco).Include(x => x.Imovel.Locatario).Include(x => x.Vistoriador).ToList();
+            string IdUserLog = _userManager.GetUserId(_httpContextAccessor.HttpContext.User);
+            return _context.Vistorias.Where(x => x.IdUser == IdUserLog).Include(x => x.Imovel.Endereco).Include(x => x.Imovel.Locatario).Include(x => x.Vistoriador).ToList();
         }
     }
 }

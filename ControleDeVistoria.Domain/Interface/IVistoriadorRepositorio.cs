@@ -1,14 +1,14 @@
 ﻿using ControleDeVistoria.Domain.Entities;
 
-namespace ControleDeVistoria.Infra.IoC.Repository.Interface
+namespace ControleDeVistoria.Domain.Interface
 {
     public interface IVistoriadorRepositorio
     {
         Vistoriador BuscarPorId(int id);
         ICollection<Vistoriador> BuscarTodos();
-        Vistoriador Atualizar(Vistoriador imovel);
-        Vistoriador Adicionar(Vistoriador imovel);
+        Vistoriador Atualizar(Vistoriador vistoriador);
+        Vistoriador Adicionar(Vistoriador vistoriador);
         bool IdExiste(int id);
-        bool Excluir(int id);
+        bool Excluir(Vistoriador vistoriador);
     }
 }

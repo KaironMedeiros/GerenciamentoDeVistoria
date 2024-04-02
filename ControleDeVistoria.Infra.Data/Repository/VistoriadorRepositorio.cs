@@ -1,6 +1,6 @@
 ﻿using ControleDeVistoria.Domain.Entities;
-using ControleDeVistoria.Infra.IoC.Data;
-using ControleDeVistoria.Infra.IoC.Repository.Interface;
+using ControleDeVistoria.Domain.Interface;
+using VControleDeVistoria.Infra.Data.Context;
 
 namespace ControleDeVistoria.Infra.IoC.Repository
 {
@@ -48,11 +48,10 @@ namespace ControleDeVistoria.Infra.IoC.Repository
             return vistoriadorDb;
         }
 
-        public bool Excluir(int id)
+        public bool Excluir(Vistoriador vistoriador)
         {
-            Vistoriador vistoriadorlDb = BuscarPorId(id);
 
-            _context.Vistoriadores.Remove(vistoriadorlDb);
+            _context.Vistoriadores.Remove(vistoriador);
             _context.SaveChanges();
 
             return true;

@@ -1,6 +1,6 @@
 ﻿using ControleDeVistoria.Domain.Entities;
 
-namespace ControleDeVistoria.Infra.IoC.Repository.Interface
+namespace ControleDeVistoria.Domain.Interface
 {
     public interface IVistoriaRepositorio
     {
@@ -13,6 +13,6 @@ namespace ControleDeVistoria.Infra.IoC.Repository.Interface
         Vistoria Adicionar(Vistoria vistoria);
         Vistoria Atualizar(Vistoria vistoria);
         bool IdExiste(int id);
-        bool Excluir(int id);
+        bool Excluir(Vistoria vistoria);
     }
 }

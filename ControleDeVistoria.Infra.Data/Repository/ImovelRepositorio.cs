@@ -1,7 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ControleDeVistoria.Domain.Entities;
-using ControleDeVistoria.Infra.IoC.Repository.Interface;
-using ControleDeVistoria.Infra.IoC.Data;
+using ControleDeVistoria.Domain.Interface;
+using VControleDeVistoria.Infra.Data.Context;
+using Microsoft.AspNetCore.Identity;
+using ControleDeVistoria.Infra.Data.IdentityData.Data;
+using Microsoft.AspNetCore.Http;
 
 namespace ControleDeVistoria.Infra.IoC.Repository
 {
@@ -9,6 +12,8 @@ namespace ControleDeVistoria.Infra.IoC.Repository
     public class ImovelRepositorio : IImovelRepositorio
     {
         private readonly VistoriaContext _context;
+        private readonly UserManager<ControleDeVistoriaIdentityUser> _userManager;
+        private readonly IHttpContextAccessor _contextAccessor;
 
         public ImovelRepositorio(VistoriaContext context) 
         {
@@ -54,11 +59,10 @@ namespace ControleDeVistoria.Infra.IoC.Repository
             return imovelDb;
         }
 
-        public bool Excluir(int id)
+        public bool Excluir(Imovel imovel)
         {
-            Imovel imovelDb = BuscarPorId(id);
 
-            _context.Imoveis.Remove(imovelDb);
+            _context.Imoveis.Remove(imovel);
             _context.SaveChanges();
 
             return true;
@@ -71,8 +75,8 @@ namespace ControleDeVistoria.Infra.IoC.Repository
 
         public ICollection<Imovel> BuscarPorUsuario()
         {
-           
-            return _context.Imoveis.Include(x => x.Endereco).Include(x => x.Vistoria).Include(x => x.Locatario).ToList();
+            string IdUserLog = _userManager.GetUserId(_contextAccessor.HttpContext.User);         
+            return _context.Imoveis.Where(x => x.IdUser == IdUserLog).Include(x => x.Endereco).Include(x => x.Vistoria).Include(x => x.Locatario).ToList();
         }
     }
 }

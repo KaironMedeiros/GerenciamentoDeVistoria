@@ -1,6 +1,6 @@
 ﻿using ControleDeVistoria.Domain.Entities;
 
-namespace ControleDeVistoria.Infra.IoC.Repository.Interface
+namespace ControleDeVistoria.Domain.Interface
 {
     public interface IImovelRepositorio
     {
@@ -10,6 +10,6 @@ namespace ControleDeVistoria.Infra.IoC.Repository.Interface
         Imovel Atualizar(Imovel imovel);
         Imovel Adicionar(Imovel imovel);
         bool IdExiste(int id);
-        bool Excluir(int id);
+        bool Excluir(Imovel imovel);
     }
 }

@@ -10,7 +10,7 @@ namespace VControleDeVistoria.Infra.Data.Context
 
         public DbSet<Ambiente> Ambientes { get; set;}
         public DbSet<Endereco> Enderecos { get; set;}
-        public DbSet<Imovel> Imovels { get; set;}
+        public DbSet<Imovel> Imoveis { get; set;}
         public DbSet<Locatario> Locatarios { get; set;}
         public DbSet<Vistoriador> Vistoriadores { get; set;}
         public DbSet<Vistoria> Vistorias { get; set;}
