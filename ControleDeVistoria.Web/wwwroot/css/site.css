@@ -16,3 +16,88 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.welcome {
+    color: white;
+    background-image: url("../img/mini-casa-conceito-de-estado-imobiliario-ai-generative.jpg");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+}
+
+.visuCabecalho {
+    font-size: 20px;
+    font-family: Calibri
+}
+
+.visuEndereco {
+    font-size: 30px;
+}
+
+.subTitulo {
+    font-weight: bold
+}
+
+.btnAddVistoria {
+    text-align: right;
+}
+
+.tbAmbiente .comodo {
+    text-align: center;
+    font-size: 20px;
+    color: black;
+    background-color: darkgrey
+}
+
+.tbAmbiente .btnExVistoria {
+    text-align: right;
+}
+
+.tbAmbiente .categoria {
+    width: 110px
+}
+
+.tbAmbiente .reparo {
+    width: 60px;
+    text-align: center
+}
+
+    .tbAmbiente .reparo .bi-tools {
+        color: red
+    }
+
+    .tbAmbiente .reparo .bi-check-circle-fill {
+        color: green
+    }
+
+.tbAmbiente .situacao {
+    width: 120px
+}
+
+.tbAmbiente .obsAmbiente {
+    text-align: center
+}
+
+.btnLista {
+    vertical-align: middle;
+    text-align: right;
+}
+
+.ambienteLabel {
+    font-size: 18px;
+    font-weight: bold
+}
+
+.form-switch {
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+.tipoImovel {
+    vertical-align: middle;
+    text-align: center;
+}
+
+    .tipoImovel .iconTipo {
+        font-size: 50px
+    } 

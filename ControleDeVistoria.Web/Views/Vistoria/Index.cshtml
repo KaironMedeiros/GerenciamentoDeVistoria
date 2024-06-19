@@ -1,0 +1,54 @@
+﻿@model ICollection<ControleDeVistoria.Application.ViewModels.VistoriaViewModel>
+
+@{
+    ViewBag.Subtitulo = "Listagem de Vistorias";
+}
+
+<header class="d-flex justify-content-between align-items-center">
+    <div>
+        <h1 class="text-primary">@ViewBag.Subtitulo</h1>
+    </div>
+</header>
+<hr>
+
+<partial name="_Mensagem"></partial>
+
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table table-striped tabela-imovel">
+        <thead>
+            <tr>
+                <th>Vistorias</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var vistoria in Model)
+            {
+                <tr>
+                    <td>
+                        <div><span class="subTitulo">Endereço:</span> @vistoria.Imovel.Endereco.Rua</div>
+                        @if (vistoria.Imovel.Locatario == null)
+                        {
+                            <div><spam class="subTitulo">Locatário:</spam> Não informado</div>
+                        }
+                        else
+                        {
+                            <div><span class="subTitulo">Locatário:</span> @vistoria.Imovel.Locatario.Nome</div>
+                        }
+                        <div><span class="subTitulo">Vistoriador:</span> @vistoria.Vistoriador.Nome</div>
+                        <div><span class="subTitulo">Data da vistoria:</span> @vistoria.DataVistoria</div>
+                        <div><span class="subTitulo">Tipo:</span> @vistoria.TipoVistoria</div>
+                    </td>
+                    <td class="btnLista">
+                        <a asp-action="Visualizar" asp-route-vistoriaId="@vistoria.Id" class="btn btn-sm btn-secondary">Visualizar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Não há nenhuma imóvel cadastrado.</p>
+}

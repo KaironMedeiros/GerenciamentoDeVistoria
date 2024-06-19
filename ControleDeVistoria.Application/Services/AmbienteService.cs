@@ -28,15 +28,15 @@ namespace ControleDeVistoria.Application.Services
             _ambienteRepositorio.Adicionar(mapAmbiente);        
         }
 
-        public  AmbienteViewModel BuscarPorId(int id)
+        public async Task<AmbienteViewModel> BuscarPorId(int id)
         {
-            var result = _ambienteRepositorio.BuscarPorId(id);
+            var result = await _ambienteRepositorio.BuscarPorId(id);
             return _mapper.Map<AmbienteViewModel>(result);
         }
 
         public void Excluir(int id)
         {
-            var ambiente = _ambienteRepositorio.BuscarPorId(id);
+            var ambiente = _ambienteRepositorio.BuscarPorId(id).Result;
             _ambienteRepositorio.Excluir(ambiente);
         }
 

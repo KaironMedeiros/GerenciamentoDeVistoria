@@ -10,12 +10,12 @@ namespace ControleDeVistoria.Application.Interfaces
 {
     public interface IVistoriaService
     {
-        VistoriaViewModel BuscarPorId(int id);
-        VistoriaViewModel BuscarPorIdImovel(int id);
-        VistoriadorViewModel BuscarPorIdVistoriador(int id);
-        ICollection<VistoriaViewModel> BuscarPorUsuario();
-        ICollection<VistoriaViewModel> BuscarTodos();
-        ICollection<AmbienteViewModel> BuscarAmbientes(int vistoriaId);
+        Task<VistoriaViewModel> BuscarPorId(int id);
+        Task<VistoriaViewModel> BuscarPorIdImovel(int id);
+        Task<VistoriadorViewModel> BuscarPorIdVistoriador(int id);
+        Task<ICollection<VistoriaViewModel>> BuscarPorUsuario();
+        Task<ICollection<VistoriaViewModel>> BuscarTodos();
+        Task<ICollection<AmbienteViewModel>> BuscarAmbientes(int vistoriaId);
         void Adicionar(VistoriaViewModel vistoria);
         void Atualizar(VistoriaViewModel vistoria);
         bool IdExiste(int id);

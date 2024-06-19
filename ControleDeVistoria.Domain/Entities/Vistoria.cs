@@ -8,8 +8,8 @@ namespace ControleDeVistoria.Domain.Entities
         public int Id { get; set; }
         public string IdUser { get; set; }
         public DateTime DataVistoria { get; set; }
-        public int MedidorAgua { get; set; }
-        public int MedidorEnergia { get; set; }
+        public int? MedidorAgua { get; set; }
+        public int? MedidorEnergia { get; set; }
         public TipoVistoria TipoVistoria { get; set; }
         public int VistoriadorId { get; set; }
         public Vistoriador? Vistoriador { get; set;}

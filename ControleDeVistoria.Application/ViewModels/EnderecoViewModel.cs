@@ -20,22 +20,15 @@ namespace ControleDeVistoria.Application.ViewModels
         public string Bairro { get; set; } = string.Empty;
         [Required(ErrorMessage = "Campo Rua abrigatório")]
         public string Rua { get; set; } = string.Empty;
-        public string Numero { get; set; } = string.Empty;
+        public string? Numero { get; set; } = string.Empty;
         [Required(ErrorMessage = "Campo CEP abrigatório")]
         public string CEP { get; set; } = string.Empty;
         [MaxLength(150, ErrorMessage = "Complemento deve ter no máximo 150 caracteres")]
         public string? Complemento { get; set; } = string.Empty;
         public int ImovelId { get; set; }
-        public Imovel? Imovel { get; set; }
-
-        [NotMapped]
-        public string EnderecoCompleto
-        {
-            get
-            {
-                return $"{Bairro}, Rua: {Rua}, N: {Numero}, {Cidade}-{UF}, CEP {CEP}";
-            }
-        }
+        public ImovelViewModel? Imovel { get; set; }
+        public string EnderecoCompleto { get; set; } = string.Empty;
+           
     }
 }
 

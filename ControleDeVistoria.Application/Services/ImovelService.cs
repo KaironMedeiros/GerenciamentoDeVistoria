@@ -36,27 +36,27 @@ namespace ControleDeVistoria.Application.Services
             _imovelRepositorio.Atualizar(mapImovel);
         }
 
-        public ImovelViewModel BuscarPorId(int id)
+        public async Task<ImovelViewModel> BuscarPorId(int id)
         {
-            var imovel = _imovelRepositorio.BuscarPorId(id);
+            var imovel = await _imovelRepositorio.BuscarPorId(id);
             return _mapper.Map<ImovelViewModel>(imovel);
         }
 
-        public ICollection<ImovelViewModel> BuscarPorUsuario()
+        public async Task<ICollection<ImovelViewModel>> BuscarPorUsuario()
         {
-            var imovelUser = _imovelRepositorio.BuscarPorUsuario();
+            var imovelUser = await _imovelRepositorio.BuscarPorUsuario();
             return _mapper.Map<ICollection<ImovelViewModel>>(imovelUser);
         }
 
-        public ICollection<ImovelViewModel> BuscarTodos()
+        public async Task<ICollection<ImovelViewModel>> BuscarTodos()
         {
-            var imovel = _imovelRepositorio.BuscarTodos();
+            var imovel = await _imovelRepositorio.BuscarTodos();
             return _mapper.Map<ICollection<ImovelViewModel>>(imovel);
         }
 
         public void Excluir(int id)
         {
-            var imovel = _imovelRepositorio.BuscarPorId(id);
+            var imovel = _imovelRepositorio.BuscarPorId(id).Result;
             _imovelRepositorio.Excluir(imovel);
         }
 

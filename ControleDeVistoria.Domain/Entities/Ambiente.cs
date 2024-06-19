@@ -11,7 +11,7 @@ namespace ControleDeVistoria.Domain.Entities
     {
         public int Id { get; set; }
 
-        public string Comodo { get; set; }
+        public string Comodo { get; set; } = string.Empty;
         public string SituacaoEletrica { get; set; } = string.Empty;
         public bool ReparoEletrica { get; set; }
         public string ObsEletrica { get; set; } = string.Empty;

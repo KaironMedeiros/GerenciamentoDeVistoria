@@ -10,8 +10,8 @@ namespace ControleDeVistoria.Application.Interfaces
 {
     public interface ILocatarioService
     {
-        LocatarioViewModel BuscarPorFK(int id);
-        ImovelViewModel BuscarPorIdImovel(int id);
+        Task<LocatarioViewModel> BuscarPorFK(int id);
+        Task<ImovelViewModel> BuscarPorIdImovel(int id);
         void Atualizar(LocatarioViewModel locatario);
         void Adicionar(LocatarioViewModel locatario);
         bool IdExiste(int id);

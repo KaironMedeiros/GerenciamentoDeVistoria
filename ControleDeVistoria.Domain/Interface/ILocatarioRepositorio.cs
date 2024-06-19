@@ -4,8 +4,8 @@ namespace ControleDeVistoria.Domain.Interface
 {
     public interface ILocatarioRepositorio
     {
-        Locatario BuscarPorFK(int id);
-        Imovel BuscarPorIdImovel(int id);
+        Task<Locatario> BuscarPorFK(int id);
+        Task<Imovel> BuscarPorIdImovel(int id);
         Locatario Atualizar(Locatario locatario);
         Locatario Adicionar(Locatario locatario);
         bool IdExiste(int id);

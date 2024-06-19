@@ -1,0 +1,16 @@
+﻿@model ControleDeVistoria.Application.ViewModels.LocatarioViewModel
+
+@{
+    ViewBag.Subtitulo = "Excluir Locatário";
+}
+
+<h1 class="text-primary">@ViewBag.Subtitulo</h1>
+<hr>
+<h4>
+    Deseja realmente excluir locatário<span class="text-danger"> @Model.Nome </span>
+</h4>
+
+<div class="mt-3">
+    <a class="btn btn-success" asp-action="Index" asp-route-imovelId="@Model.ImovelId">Não</a>
+    <a class="btn btn-danger" asp-action="Excluir" asp-route-imovelId="@Model.ImovelId">Sim</a>
+</div>

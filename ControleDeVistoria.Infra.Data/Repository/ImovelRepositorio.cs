@@ -14,10 +14,12 @@ namespace ControleDeVistoria.Infra.IoC.Repository
         private readonly VistoriaContext _context;
         private readonly UserManager<ControleDeVistoriaIdentityUser> _userManager;
         private readonly IHttpContextAccessor _contextAccessor;
-
-        public ImovelRepositorio(VistoriaContext context) 
+         
+        public ImovelRepositorio(VistoriaContext context, UserManager<ControleDeVistoriaIdentityUser> userManager, IHttpContextAccessor httpContextAccessor) 
         {
             _context = context;
+            _userManager = userManager;
+            _contextAccessor = httpContextAccessor;
         }
 
         public Imovel Adicionar(Imovel imovel)
@@ -27,19 +29,19 @@ namespace ControleDeVistoria.Infra.IoC.Repository
             return imovel;
         }
 
-        public Imovel BuscarPorId(int id)
+        public async Task<Imovel> BuscarPorId(int id)
         {
-            return _context.Imoveis.Include(x => x.Endereco).Include(x => x.Locatario).FirstOrDefault(x => x.Id == id);
+            return await _context.Imoveis.Include(x => x.Endereco).Include(x => x.Locatario).FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public ICollection<Imovel> BuscarTodos()
+        public async Task<ICollection<Imovel>> BuscarTodos()
         {
-            return _context.Imoveis.Include(x => x.Endereco).Include(x => x.Vistoria).Include(x => x.Locatario).ToList();
+            return await _context.Imoveis.Include(x => x.Endereco).Include(x => x.Vistoria).Include(x => x.Locatario).ToListAsync();
         }
 
         public Imovel Atualizar(Imovel imovel)
         {
-            Imovel imovelDb = BuscarPorId(imovel.Id);
+            Imovel imovelDb = BuscarPorId(imovel.Id).Result;
 
             if (imovelDb == null) throw new System.Exception("Houve um erro na atualização dos dados");
 
@@ -73,10 +75,10 @@ namespace ControleDeVistoria.Infra.IoC.Repository
             return _context.Imoveis.Any(x => x.Id == id);
         }
 
-        public ICollection<Imovel> BuscarPorUsuario()
+        public async Task<ICollection<Imovel>> BuscarPorUsuario()
         {
             string IdUserLog = _userManager.GetUserId(_contextAccessor.HttpContext.User);         
-            return _context.Imoveis.Where(x => x.IdUser == IdUserLog).Include(x => x.Endereco).Include(x => x.Vistoria).Include(x => x.Locatario).ToList();
+            return await _context.Imoveis.Where(x => x.IdUser == IdUserLog).Include(x => x.Endereco).Include(x => x.Vistoria).Include(x => x.Locatario).ToListAsync();
         }
     }
 }

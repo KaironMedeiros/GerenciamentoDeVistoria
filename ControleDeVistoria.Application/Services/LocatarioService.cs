@@ -34,21 +34,21 @@ namespace ControleDeVistoria.Application.Services
             _locatarioRepositorio.Atualizar(mapLocatario);
         }
 
-        public LocatarioViewModel BuscarPorFK(int id)
+        public async Task<LocatarioViewModel> BuscarPorFK(int id)
         {
-            var result = _locatarioRepositorio.BuscarPorFK(id);
+            var result = await _locatarioRepositorio.BuscarPorFK(id);
             return _mapper.Map<LocatarioViewModel>(result);
         }
 
-        public ImovelViewModel BuscarPorIdImovel(int id)
+        public async Task<ImovelViewModel> BuscarPorIdImovel(int id)
         {
-            var result = _locatarioRepositorio.BuscarPorIdImovel(id);
+            var result = await _locatarioRepositorio.BuscarPorIdImovel(id);
             return _mapper.Map<ImovelViewModel>(result);
         }
 
         public void Excluir(int id)
         {
-            var locatario = _locatarioRepositorio.BuscarPorFK(id);
+            var locatario = _locatarioRepositorio.BuscarPorFK(id).Result;
             _locatarioRepositorio.Excluir(locatario);
         }
 

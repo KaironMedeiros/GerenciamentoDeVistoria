@@ -1,0 +1,47 @@
+﻿@using ControleDeVistoria.Application.ViewModels;
+@model ControleDeVistoria.Application.ViewModels.LocatarioViewModel;
+
+@{
+    var imovel = ViewBag.imovel as ImovelViewModel;
+    ViewBag.Subtitulo = "Locatário";
+}
+
+@if (Model != null)
+{
+    <header class="d-flex justify-content-between align-items-center">
+        <div>
+            <h1 class="text-primary">@ViewBag.Subtitulo</h1>
+        </div>
+        <div>
+            <a asp-action="CriarEditar" class="btn btn-success btn-sm" asp-route-Id="@Model.Id" asp-route-imovelId="@imovel.Id"><i class="bi bi-pencil-square" title="Editar locatário"></i></a>
+            <a asp-action="ExcluirConfirmacao" asp-route-imovelId="@imovel.Id" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill" title="Excluir locatário"></i></a>
+        </div>
+    </header>
+    <hr>
+
+    <div>
+
+        <p><span class="subTitulo">Nome:</span> @Model.Nome</p>
+        <p><span class="subTitulo">CPF:</span> @Model.CPF</p>
+        <p><span class="subTitulo">Telefone:</span> @Model.Telefone</p>
+        <p><span class="subTitulo">Data de Entrada:</span> @Model.DataEntrada</p>
+        <p><span class="subTitulo">Data de saída:</span> @Model.DataSaida</p>
+
+    </div>
+}
+else
+{
+    <header class="d-flex justify-content-between align-items-center">
+        <div>
+            <h1 class="text-primary">@ViewBag.Subtitulo</h1>
+        </div>
+        <div>
+            <a asp-action="CriarEditar" class="btn btn-primary" asp-route-imovelId="@imovel.Id">Adicionar Locatário</a>
+        </div>
+    </header>
+    <hr>
+
+    <div>
+        <p>Não há nenhum Locatário cadastrado para este imóvel</p>
+    </div>
+}

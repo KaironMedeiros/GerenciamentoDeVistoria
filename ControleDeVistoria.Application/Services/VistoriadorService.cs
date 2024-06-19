@@ -16,6 +16,13 @@ namespace ControleDeVistoria.Application.Services
         private IVistoriadorRepositorio _vistoriadorRepositorio;
         private readonly IMapper _mapper;
 
+        public VistoriadorService(IVistoriadorRepositorio vistoriadorRepositorio, IMapper mapper)
+        {
+            _vistoriadorRepositorio = vistoriadorRepositorio;
+            _mapper = mapper;
+
+        }
+
         public void Adicionar(VistoriadorViewModel vistoriador)
         {
             var mapVistoriador = _mapper.Map<Vistoriador>(vistoriador);
@@ -28,21 +35,21 @@ namespace ControleDeVistoria.Application.Services
             _vistoriadorRepositorio.Atualizar(mapVistoriador);
         }
 
-        public VistoriadorViewModel BuscarPorId(int id)
+        public async Task<VistoriadorViewModel> BuscarPorId(int id)
         {
-            var vistoriador = _vistoriadorRepositorio.BuscarPorId(id);
+            var vistoriador = await _vistoriadorRepositorio.BuscarPorId(id);
             return _mapper.Map<VistoriadorViewModel>(vistoriador);
         }
 
-        public ICollection<VistoriadorViewModel> BuscarTodos()
+        public async Task<ICollection<VistoriadorViewModel>> BuscarTodos()
         {
-            var vistoriadores = _vistoriadorRepositorio.BuscarTodos();
+            var vistoriadores = await _vistoriadorRepositorio.BuscarTodos();
             return _mapper.Map<ICollection<VistoriadorViewModel>>(vistoriadores);
         }
 
         public void Excluir(int id)
         {
-            var vistoriador = _vistoriadorRepositorio.BuscarPorId(id);
+            var vistoriador = _vistoriadorRepositorio.BuscarPorId(id).Result;
             _vistoriadorRepositorio.Excluir(vistoriador);
         }
 

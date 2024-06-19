@@ -1,5 +1,6 @@
 ﻿using ControleDeVistoria.Domain.Entities;
 using ControleDeVistoria.Domain.Interface;
+using Microsoft.EntityFrameworkCore;
 using VControleDeVistoria.Infra.Data.Context;
 
 namespace ControleDeVistoria.Infra.IoC.Repository
@@ -21,19 +22,19 @@ namespace ControleDeVistoria.Infra.IoC.Repository
             return vistoriador;
         }
 
-        public Vistoriador BuscarPorId(int id)
+        public async Task<Vistoriador> BuscarPorId(int id)
         {
-            return _context.Vistoriadores.FirstOrDefault(x => x.Id == id);
+            return await _context.Vistoriadores.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public ICollection<Vistoriador> BuscarTodos()
+        public async Task<ICollection<Vistoriador>> BuscarTodos()
         {
-            return _context.Vistoriadores.ToList();
+            return await _context.Vistoriadores.ToListAsync();
         }
 
         public Vistoriador Atualizar(Vistoriador vistoriador)
         {
-            Vistoriador vistoriadorDb = BuscarPorId(vistoriador.Id);
+            Vistoriador vistoriadorDb = BuscarPorId(vistoriador.Id).Result;
 
             if (vistoriadorDb == null) throw new System.Exception("Houve um erro na atualização dos dados");
 

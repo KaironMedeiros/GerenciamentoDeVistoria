@@ -1,0 +1,16 @@
+﻿@model ControleDeVistoria.Application.ViewModels.ImovelViewModel
+
+@{
+    ViewBag.Subtitulo = "Excluir Imovel";
+}
+
+<h1 class="text-primary">@ViewBag.Subtitulo</h1>
+<hr>
+<h4>
+    Deseja realmente excluir Imóvel<span class="text-danger"> @Model.Endereco.EnderecoCompleto </span>
+</h4>
+
+<div class="mt-3">
+    <a class="btn btn-success" asp-controller="Imovel" asp-action="Index">Não</a>
+    <a class="btn btn-danger" asp-action="Excluir" asp-route-id="@Model.Id">Sim</a>
+</div>

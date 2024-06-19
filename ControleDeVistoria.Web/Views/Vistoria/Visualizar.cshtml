@@ -1,0 +1,146 @@
+﻿@using ControleDeVistoria.Application.ViewModels;
+@model ControleDeVistoria.Application.ViewModels.VistoriaViewModel
+
+@{
+    ViewBag.Subtitulo = "Vistoria";
+    ICollection<AmbienteViewModel> ambiente = ViewBag.ambiente;
+}
+
+<header class="d-flex justify-content-between align-items-center">
+    <div>
+        <h1 class="text-primary">@ViewBag.Subtitulo</h1>
+    </div>
+    <div>
+        <a asp-action="CriarEditar" asp-route-imovelId="@Model.ImovelId" asp-route-id="@Model.Id" class="btn btn-sm btn-success"><i class="bi bi-pencil-square" title="Editar vistoria"></i></a>
+        <a asp-action="ExcluirConfirmacao" asp-route-id="@Model.Id" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill" title="Excluir vistoria"></i></a>
+    </div>
+</header>
+<hr>
+
+<div class="visuCabecalho">
+    <p class="visuEndereco">@Model.Imovel.Endereco.Cidade</p>
+    <p><span class="subTitulo">Situação:</span> @Model.Imovel.Situacao <span class="subTitulo">Tipo:</span> @Model.Imovel.TipoImovel</p>
+    @if (Model.Imovel.Locatario == null)
+    {
+        <p><span class="subTitulo">Locatário:</span> Não informado</p>
+    }
+    else
+    {
+        <p>
+            <span class="subTitulo">Locatário</span>@Model.Imovel.Locatario.Nome
+            <span class="subTitulo">Data de entrada:</span> @Model.Imovel.Locatario.DataEntrada
+            <span class="subTitulo">Data de saída:</span> @Model.Imovel.Locatario.DataSaida
+        </p>
+
+    }
+    <p>
+        <span class="subTitulo">Vistoriador:</span> @Model.Vistoriador.Nome Email: @Model.Vistoriador.Email
+        <span class="subTitulo">Data da vistoria:</span> @Model.DataVistoria
+    </p>
+    <p>
+        <span class="subTitulo">Água:</span> @Model.MedidorAgua
+        <span class="subTitulo">Energia:</span> @Model.MedidorEnergia
+    </p>
+    <div class="btnAddVistoria">
+        <a asp-action="Criar" asp-controller="Ambiente" asp-route-vistoriaId="@Model.Id" class="btn btn-warning">Adicionar ambientes</a>
+    </div>
+</div>
+
+<hr>
+
+
+@foreach (var item in ambiente)
+{
+    <table class="tbAmbiente table table-striped table-hover">
+
+        <thead>
+            <tr>
+                <th class="comodo" colspan="4" scope="col">@item.Comodo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th class="categoria" scope="row">Elétrica</th>
+                @if (item.ReparoEletrica == true)
+                {
+                    <td class="reparo"><i class="bi bi-tools"></i></td>
+                }
+                else
+                {
+                    <td class="reparo"><i class="bi bi-check-circle-fill"></i></td>
+                }
+                <td class="situacao">@item.SituacaoEletrica</td>
+                <td class="obsAmbiente">@item.ObsEletrica</td>
+            </tr>
+            <tr>
+                <th class="categoria" scope="row">Esquadrias</th>
+                @if (item.ReparoEsquadrias == true)
+                {
+                    <td class="reparo"><i class="bi bi-tools"></i></td>
+                }
+                else
+                {
+                    <td class="reparo"><i class="bi bi-check-circle-fill"></i></td>
+                }
+                <td class="situacao">@item.SituacaoEsquadrias</td>
+                <td class="obsAmbiente">@item.ObsEsquadrias</td>
+            </tr>
+            <tr>
+                <th class="categoria" scope="row">Hidráulica</th>
+                @if (item.ReparoHidraulica == true)
+                {
+                    <td class="reparo"><i class="bi bi-tools"></i></td>
+                }
+                else
+                {
+                    <td class="reparo"><i class="bi bi-check-circle-fill"></i></td>
+                }
+                <td class="situacao">@item.SituacaoHidraulica</td>
+                <td class="obsAmbiente">@item.ObsHidraulica</td>
+            </tr>
+            <tr>
+                <th class="categoria" scope="row">Pintura</th>
+                @if (item.ReparoPintura == true)
+                {
+                    <td class="reparo"><i class="bi bi-tools"></i></td>
+                }
+                else
+                {
+                    <td class="reparo"><i class="bi bi-check-circle-fill"></i></td>
+                }
+                <td class="situacao">@item.SituacaoPintura</td>
+                <td class="obsAmbiente">@item.ObsPintura</td>
+            </tr>
+            <tr>
+                <th class="categoria" scope="row">Piso</th>
+                @if (item.ReparoPiso == true)
+                {
+                    <td class="reparo"><i class="bi bi-tools"></i></td>
+                }
+                else
+                {
+                    <td class="reparo"><i class="bi bi-check-circle-fill"></i></td>
+                }
+                <td class="situacao">@item.SituacaoPiso</td>
+                <td class="obsAmbiente">@item.ObsPiso</td>
+            </tr>
+            <tr>
+                <th class="categoria" scope="row">Teto</th>
+                @if (item.ReparoTeto == true)
+                {
+                    <td class="reparo"><i class="bi bi-tools"></i></td>
+                }
+                else
+                {
+                    <td class="reparo"><i class="bi bi-check-circle-fill"></i></td>
+                }
+                <td class="situacao">@item.SituacaoTeto</td>
+                <td class="obsAmbiente">@item.ObsTeto</td>
+            </tr>
+            <tr>
+                <td class="btnExVistoria" colspan="4"><a asp-controller="Ambiente" asp-action="Excluir" asp-route-vistoId="@Model.Id" asp-route-ambienteId="@item.Id" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill" title="Excluir ambiente"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+
+}

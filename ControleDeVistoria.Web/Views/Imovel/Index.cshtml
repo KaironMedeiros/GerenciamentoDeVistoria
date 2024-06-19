@@ -1,0 +1,88 @@
+﻿@model ICollection<ControleDeVistoria.Application.ViewModels.ImovelViewModel>
+
+@{
+    ViewBag.Subtitulo = "Listagem de Imóveis";
+}
+
+
+<header class="d-flex justify-content-between align-items-center">
+    <div>
+        <h1 class="text-primary">@ViewBag.Subtitulo</h1>
+    </div>
+    <div>
+        <a asp-action="CriarEditar" class="btn btn-primary">Novo Imóvel</a>
+    </div>
+</header>
+<hr>
+
+<partial name="_Mensagem"></partial>
+
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table table-striped tabela-imovel">
+        <thead>
+            <tr>
+                <th>Imóveis</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var imovel in Model)
+            {
+                <tr>
+                    <td class="tipoImovel">
+                        @if (imovel.TipoImovel == "Casa")
+                        {
+                            <i class="bi bi-house iconTipo"></i>
+                        }
+                        else if (imovel.TipoImovel == "Apartamento")
+                        {
+                            <i class="bi bi-building iconTipo"></i>
+                        }
+                        else if (imovel.TipoImovel == "Comercial")
+                        {
+                            <i class="bi bi-shop iconTipo"></i>
+                        }
+
+                    </td>
+                    <td>
+                        <div><span class="subTitulo">Endereço:</span> @imovel.Endereco.EnderecoCompleto </div>
+                        <div>
+                            @if (imovel.Locatario != null)
+                            {
+                                <span class="subTitulo">Locatário:</span> @imovel.Locatario.DadosCompleto
+                            }
+                            else
+                            {
+                                <span>
+                                    <span class="subTitulo">Locatário:</span> Não informado
+                                </span>
+                            }
+                        </div>
+                        <div><span class="subTitulo">Situação:</span> @imovel.Situacao</div>
+                    </td>
+                    <td class="btnLista">
+
+                        @if (imovel.Vistoria == null)
+                        {
+                            <a asp-action="CriarEditar" asp-controller="Vistoria" asp-route-imovelId="@imovel.Id" class="btn btn-sm btn-warning">Criar Vistoria</a>
+                        }
+                        else
+                        {
+                            <a asp-action="Visualizar" asp-controller="Vistoria" asp-route-vistoriaId="@imovel.Vistoria.Id" class="btn btn-sm btn-secondary">Visualizar Vistoria</a>
+                        }
+                        <a asp-action="Index" asp-controller="Locatario" asp-route-imovelId="@imovel.Id" class="btn btn-sm btn-info">Locatário</a>
+                        <a asp-action="CriarEditar" asp-route-id="@imovel.Id" class="btn btn-sm btn-success"><i class="bi bi-pencil-square" title="Editar imóvel"></i></a>
+                        <a asp-action="ExcluirConfirmacao" asp-route-id="@imovel.Id" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill" title="Excluir imóvel"></i></a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Não há nenhuma imóvel cadastrado.</p>
+}
+

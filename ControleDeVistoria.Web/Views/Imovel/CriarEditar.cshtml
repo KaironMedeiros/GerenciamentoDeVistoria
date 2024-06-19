@@ -1,0 +1,110 @@
+﻿@model ControleDeVistoria.Application.ViewModels.ImovelViewModel
+
+@{
+    if (Context.Request.RouteValues.ContainsKey("id"))
+        ViewBag.Subtitulo = "Alteração de dados";
+    else
+        ViewBag.Subtitulo = "Novo Imovel";
+}
+
+<h3 class="text-primary">@ViewBag.Subtitulo</h3>
+<hr>
+
+<form class="row g-3" asp-action="CriarEditar" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <input type="hidden" asp-for="IdUser" value=@ViewData["UserID"]>
+
+    <div class="col-md-5">
+        <label asp-for="Endereco.Rua" class="form-label subTitulo">Rua</label>
+        <input type="text" asp-for="Endereco.Rua" class="form-control">
+        <span class="text-danger" asp-validation-for="Endereco.Rua"></span>
+
+    </div>
+    <div class="col-md-5">
+        <label asp-for="Endereco.Bairro" class="form-label subTitulo">Bairro</label>
+        <input type="text" asp-for="Endereco.Bairro" class="form-control">
+        <span class="text-danger" asp-validation-for="Endereco.Bairro"></span>
+
+    </div>
+    <div class="col-md-2">
+        <label asp-for="Endereco.Numero" class="form-label subTitulo">Número</label>
+        <input type="text" asp-for="Endereco.Numero" class="form-control">
+        <span class="text-danger" asp-validation-for="Endereco.Numero"></span>
+    </div>
+    <div class="col-md-5">
+        <label asp-for="Endereco.Cidade" class="form-label subTitulo">Cidade</label>
+        <input type="text" asp-for="Endereco.Cidade" class="form-control">
+        <span class="text-danger" asp-validation-for="Endereco.Cidade"></span>
+
+    </div>
+    <div class="col-md-1">
+        <label asp-for="Endereco.UF" class="form-label subTitulo">UF</label>
+        <select class="form-select" asp-for="Endereco.UF">
+            <option selected></option>
+            <option value="AC">AC</option>
+            <option value="AL">AL</option>
+            <option value="AP">AP</option>
+            <option value="AM">AM</option>
+            <option value="BA">BA</option>
+            <option value="CE">CE</option>
+            <option value="DF">DF</option>
+            <option value="ES">ES</option>
+            <option value="GO">GO</option>
+            <option value="MA">MA</option>
+            <option value="MT">MT</option>
+            <option value="MS">MS</option>
+            <option value="MG">MG</option>
+            <option value="PA">PA</option>
+            <option value="PB">PB</option>
+            <option value="PR">PR</option>
+            <option value="PE">PE</option>
+            <option value="PI">PI</option>
+            <option value="RJ">RJ</option>
+            <option value="RN">RN</option>
+            <option value="RS">RS</option>
+            <option value="RO">RO</option>
+            <option value="RR">RR</option>
+            <option value="SC">SC</option>
+            <option value="SP">SP</option>
+            <option value="SE">SE</option>
+            <option value="TO">TO</option>
+        </select>
+        <span class="text-danger" asp-validation-for="Endereco.UF"></span>
+    </div>
+    <div class="col-md-2">
+        <label asp-for="Endereco.CEP" class="form-label subTitulo">CEP</label>
+        <input type="text" asp-for="Endereco.CEP" class="form-control">
+        <span class="text-danger" asp-validation-for="Endereco.CEP"></span>
+    </div>
+
+    <div class="col-md-2">
+        <label asp-for="TipoImovel" class="form-label subTitulo">Tipo</label>
+        <select class="form-select" asp-for="TipoImovel">
+            <option selected></option>
+            <option value="1">Apartamento</option>
+            <option value="2">Casa</option>
+            <option value="3">Comercial</option>
+        </select>
+        <span class="text-danger" asp-validation-for="TipoImovel"></span>
+    </div>
+
+    <div class="col-md-5">
+        <label asp-for="Endereco.Complemento" class="form-label subTitulo">Complemento</label>
+        <input type="text" asp-for="Endereco.Complemento" class="form-control">
+    </div>
+    <div class="col-md-2">
+        <label asp-for="Situacao" class="form-label subTitulo">Situação</label>
+        <select class="form-select" asp-for="Situacao">
+            <option selected></option>
+            <option value="1">Ocupado</option>
+            <option value="2">Desocupado</option>
+        </select>
+        <span class="text-danger" asp-validation-for="Situacao"></span>
+    </div>
+
+    <div>
+        <button class="btn btn-success" type="submit">Salvar</button>
+        <a class="btn btn btn-danger" asp-controller="Imovel" asp-action="Index">Cancelar</a>
+    </div>
+</form>

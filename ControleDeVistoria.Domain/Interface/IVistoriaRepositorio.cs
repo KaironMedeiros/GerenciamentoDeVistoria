@@ -4,12 +4,12 @@ namespace ControleDeVistoria.Domain.Interface
 {
     public interface IVistoriaRepositorio
     {
-        Vistoria BuscarPorId(int id);
-        Vistoria BuscarPorIdImovel(int id);
-        Vistoriador BuscarPorIdVistoriador(int id);
-        ICollection<Vistoria> BuscarPorUsuario();
-        ICollection<Vistoria> BuscarTodos();
-        ICollection<Ambiente> BuscarAmbientes(int vistoriaId);
+        Task<Vistoria> BuscarPorId(int id);
+        Task<Vistoria> BuscarPorIdImovel(int id);
+        Task<Vistoriador> BuscarPorIdVistoriador(int id);
+        Task<ICollection<Vistoria>> BuscarPorUsuario();
+        Task<ICollection<Vistoria>> BuscarTodos();
+        Task<ICollection<Ambiente>> BuscarAmbientes(int vistoriaId);
         Vistoria Adicionar(Vistoria vistoria);
         Vistoria Atualizar(Vistoria vistoria);
         bool IdExiste(int id);

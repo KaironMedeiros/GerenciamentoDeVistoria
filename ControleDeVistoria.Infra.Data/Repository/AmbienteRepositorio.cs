@@ -22,9 +22,9 @@ namespace ControleDeVistoria.Infra.Data.Repository
             return ambiente;
         }
 
-        public Ambiente BuscarPorId(int id)
+        public async Task<Ambiente> BuscarPorId(int id)
         {
-            return _context.Ambientes.FirstOrDefault(x => x.Id == id);
+            return await _context.Ambientes.FirstOrDefaultAsync(x => x.Id == id);
         }
 
        /* public ICollection<AmbienteModel> BuscarTodos()

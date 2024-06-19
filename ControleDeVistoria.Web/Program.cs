@@ -1,5 +1,7 @@
+using ControleDeVistoria.Application.Mappings;
 using ControleDeVistoria.Infra.Data;
 using ControleDeVistoria.Infra.Ioc;
+using ControleDeVistoria.Web.MappingConfig;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +19,7 @@ namespace ControleDeVistoria.Web
             var configuration = provider.GetService<IConfiguration>();
 
             builder.Services.AddInfrastructure(configuration);
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
 

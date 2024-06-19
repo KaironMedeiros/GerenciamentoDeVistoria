@@ -1,25 +1,27 @@
-﻿using ControleDeVistoria.Infra.Data.Models;
+﻿using ControleDeVistoria.Infra.Data.IdentityData.Data;
+using ControleDeVistoria.Infra.Data.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace ControleDeVistoria.Web.Controllers
 {
+    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly UserManager<ControleDeVistoriaIdentityUser> _userManager;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, UserManager<ControleDeVistoriaIdentityUser> userManager)
         {
             _logger = logger;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
+            ViewData["UserNAME"] = _userManager.GetUserName(this.User);
             return View();
         }
 

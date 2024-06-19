@@ -11,7 +11,7 @@ namespace ControleDeVistoria.Application.Mappings
 {
     public class ViewModelToDomainMappingProfile : Profile
     {
-        public ViewModelToDomainMappingProfile()
+       /* public ViewModelToDomainMappingProfile()
         {
             CreateMap<AmbienteViewModel, Ambiente>();
             CreateMap<EnderecoViewModel, Endereco>();
@@ -19,6 +19,6 @@ namespace ControleDeVistoria.Application.Mappings
             CreateMap<LocatarioViewModel, Locatario>();
             CreateMap<VistoriadorViewModel, Vistoriador>();
             CreateMap<VistoriaViewModel, Vistoria>();
-        }
+        }*/
     }
 }

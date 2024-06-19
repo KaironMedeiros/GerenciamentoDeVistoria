@@ -21,25 +21,25 @@ namespace ControleDeVistoria.Infra.IoC.Repository
             return locatario;
         }
 
-        public Locatario BuscarPorFK(int id)
+        public async Task<Locatario> BuscarPorFK(int id)
         {
-            return _context.Locatarios.FirstOrDefault(x => x.ImovelId == id);
+            return await _context.Locatarios.FirstOrDefaultAsync(x => x.ImovelId == id);
         }
 
-        public Imovel BuscarPorIdImovel(int id)
+        public async Task<Imovel> BuscarPorIdImovel(int id)
         {
-            return _context.Imoveis.Include(x => x.Locatario).FirstOrDefault(x => x.Id == id);
+            return await _context.Imoveis.Include(x => x.Locatario).FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public Locatario Atualizar(Locatario locatario)
         {
-            Locatario locatarioDb = BuscarPorFK(locatario.ImovelId);
+            Locatario locatarioDb = BuscarPorFK(locatario.ImovelId).Result;
 
             if (locatarioDb == null) throw new System.Exception("Houve um erro na atualização dos dados");
 
             locatarioDb.Nome = locatario.Nome;
             locatarioDb.CPF = locatario.CPF;
-            locatario.Telefone = locatario.Telefone;
+            locatarioDb.Telefone = locatario.Telefone;
             locatarioDb.DataEntrada = locatario.DataEntrada;
             locatarioDb.DataSaida = locatario.DataSaida;
 

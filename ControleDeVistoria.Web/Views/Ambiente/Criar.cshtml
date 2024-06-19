@@ -1,0 +1,189 @@
+﻿@model ControleDeVistoria.Application.ViewModels.AmbienteViewModel
+
+@{
+
+    ViewBag.Subtitulo = "Criar Ambiente";
+}
+
+<h3 class="text-primary">@ViewBag.Subtitulo</h3>
+<hr>
+
+<form class="row g-3" asp-action="Criar" method="post">
+
+    <input type="hidden" asp-for="@Model.VistoriaId">
+
+    <div class="col-md-5">
+        <label asp-for="Comodo" class="form-label ambienteLabel">Comodo</label>
+        <input type="text" asp-for="Comodo" class="form-control" placeholder="ex. Quarto">
+
+    </div>
+
+    <div>
+        <spam class="ambienteLabel">Elétrica</spam>
+
+        <div class="col-md-5">
+            <select class="form-select" asp-for="SituacaoEletrica" aria-label="Default select example">
+                <label asp-for="SituacaoEletrica" class="form-label">Situação</label>
+                <option value=""></option>
+                <option value="Novo">Novo</option>
+                <option value="Bom estado">Bom estado</option>
+                <option value="Gasto">Gasto</option>
+                <option value="Com defeito">Com defeito</option>
+            </select>
+        </div>
+        <div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" asp-for="ReparoEletrica" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label" asp-for="ReparoEletrica" for="flexSwitchCheckDefault">Precisa de Reparo</label>
+            </div>
+        </div>
+        <div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" asp-for="ObsEletrica" class="form-label">Observações</label>
+                <textarea class="form-control" asp-for="ObsEletrica" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <spam class="ambienteLabel">Esquadrias</spam>
+
+        <div class="col-md-5">
+            <select class="form-select" asp-for="SituacaoEsquadrias" aria-label="Default select example">
+                <label asp-for="SituacaoEsquadrias" class="form-label">Situação</label>
+                <option value=""></option>
+                <option value="Novo">Novo</option>
+                <option value="Bom estado">Bom estado</option>
+                <option value="Gasto">Gasto</option>
+                <option value="Com defeito">Com defeito</option>
+            </select>
+        </div>
+        <div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" asp-for="ReparoEsquadrias" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label" asp-for="ReparoEsquadrias" for="flexSwitchCheckDefault">Precisa de Reparo</label>
+            </div>
+        </div>
+        <div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" asp-for="ObsEsquadrias" class="form-label">Observações</label>
+                <textarea class="form-control" asp-for="ObsEsquadrias" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <spam class="ambienteLabel">Hidraulica</spam>
+
+        <div class="col-md-5">
+            <select class="form-select" asp-for="SituacaoHidraulica" aria-label="Default select example">
+                <label asp-for="SituacaoHidraulica" class="form-label">Situação</label>
+                <option value=""></option>
+                <option value="Novo">Novo</option>
+                <option value="Bom estado">Bom estado</option>
+                <option value="Gasto">Gasto</option>
+                <option value="Com defeito">Com defeito</option>
+            </select>
+        </div>
+        <div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" asp-for="ReparoHidraulica" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label" asp-for="ReparoHidraulica" for="flexSwitchCheckDefault">Precisa de Reparo</label>
+            </div>
+        </div>
+        <div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" asp-for="ObsHidraulica" class="form-label">Observações</label>
+                <textarea class="form-control" asp-for="ObsHidraulica" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <spam class="ambienteLabel">Pintura</spam>
+
+        <div class="col-md-5">
+            <select class="form-select" asp-for="SituacaoPintura" aria-label="Default select example">
+                <label asp-for="SituacaoPintura" class="form-label">Situação</label>
+                <option value=""></option>
+                <option value="Novo">Novo</option>
+                <option value="Bom estado">Bom estado</option>
+                <option value="Gasto">Gasto</option>
+                <option value="Com defeito">Com defeito</option>
+            </select>
+        </div>
+        <div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" asp-for="ReparoPintura" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label" asp-for="ReparoPintura" for="flexSwitchCheckDefault">Precisa de Reparo</label>
+            </div>
+        </div>
+        <div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" asp-for="ObsPintura" class="form-label">Observações</label>
+                <textarea class="form-control" asp-for="ObsPintura" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <spam class="ambienteLabel">Piso</spam>
+
+        <div class="col-md-5">
+            <select class="form-select" asp-for="SituacaoPiso" aria-label="Default select example">
+                <label asp-for="SituacaoPiso" class="form-label">Situação</label>
+                <option value=""></option>
+                <option value="Novo">Novo</option>
+                <option value="Bom estado">Bom estado</option>
+                <option value="Gasto">Gasto</option>
+                <option value="Com defeito">Com defeito</option>
+            </select>
+        </div>
+        <div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" asp-for="ReparoPiso" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label" asp-for="ReparoPiso" for="flexSwitchCheckDefault">Precisa de Reparo</label>
+            </div>
+        </div>
+        <div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" asp-for="ObsPiso" class="form-label">Observações</label>
+                <textarea class="form-control" asp-for="ObsPiso" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <spam class="ambienteLabel">Teto</spam>
+
+        <div class="col-md-5">
+            <select class="form-select" asp-for="SituacaoTeto" aria-label="Default select example">
+                <label asp-for="SituacaoTeto" class="form-label">Situação</label>
+                <option value=""></option>
+                <option value="Novo">Novo</option>
+                <option value="Bom estado">Bom estado</option>
+                <option value="Gasto">Gasto</option>
+                <option value="Com defeito">Com defeito</option>
+            </select>
+        </div>
+        <div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" asp-for="ReparoTeto" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label" asp-for="ReparoTeto" for="flexSwitchCheckDefault">Precisa de Reparo</label>
+            </div>
+        </div>
+        <div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" asp-for="ObsTeto" class="form-label">Observações</label>
+                <textarea class="form-control" asp-for="ObsTeto" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+        </div>
+    </div>
+
+
+    <div>
+        <button class="btn btn-success" type="submit">Salvar</button>
+        <a class="btn btn btn-danger" asp-controller="Vistoria" asp-action="Index">Cancelar</a>
+    </div>
+
+</form>

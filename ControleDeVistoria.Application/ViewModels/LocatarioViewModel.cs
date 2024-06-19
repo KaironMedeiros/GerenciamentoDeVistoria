@@ -12,23 +12,20 @@ namespace ControleDeVistoria.Application.ViewModels
     public class LocatarioViewModel
     {
         public int Id { get; set; }
-        [Required(ErrorMessage = "Campo CPF  abrigatório")]
+        [Required(ErrorMessage = "Campo CPF abrigatório")]
         public string CPF { get; set; } = string.Empty;
-        [Required(ErrorMessage = "Campo nome  abrigatório")]
+        [Required(ErrorMessage = "Campo nome abrigatório")]
         public string Nome { get; set; } = string.Empty;
-        public string Telefone { get; set; } = string.Empty;
-        public DateTime DataEntrada { get; set; }
+        public string? Telefone { get; set; } = string.Empty;
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime? DataEntrada { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? DataSaida { get; set; }
         public int ImovelId { get; set; }
-        public Imovel? Imovel { get; set; }
+        public ImovelViewModel? Imovel { get; set; }
+        public string DadosCompleto { get; set; } = string.Empty;   
+      
 
-        [NotMapped]
-        public string LocatarioCompleto
-        {
-            get
-            {
-                return $"{Nome}, {CPF}, Tel: {Telefone}";
-            }
-        }
+       
     }
 }

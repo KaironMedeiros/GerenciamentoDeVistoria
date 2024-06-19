@@ -1,0 +1,37 @@
+﻿@model ControleDeVistoria.Application.ViewModels.VistoriadorViewModel
+
+@{
+    if (Context.Request.RouteValues.ContainsKey("id"))
+        ViewBag.Subtitulo = "Alteração de dados";
+    else
+        ViewBag.Subtitulo = "Novo vistoriador";
+}
+
+<h3 class="text-primary">@ViewBag.Subtitulo</h3>
+<hr>
+
+<form class="row g-3" asp-action="CriarEditar" method="post">
+
+    <input type="hidden" asp-for="IdUser" value=@ViewData["UserID"]>
+
+    <div class="col-md-5">
+        <label asp-for="Nome" class="form-label subTitulo">Nome</label>
+        <input type="text" asp-for="Nome" class="form-control">
+        <span class="text-danger" asp-validation-for="Nome"></span>
+    </div>
+    <div class="col-md-2">
+        <label asp-for="Telefone" class="form-label subTitulo">Telefone</label>
+        <input type="text" asp-for="Telefone" class="form-control">
+        <span class="text-danger" asp-validation-for="Telefone"></span>
+    </div>
+    <div class="col-md-5">
+        <label asp-for="Email" class="form-label subTitulo">E-mail</label>
+        <input type="text" asp-for="Email" class="form-control">
+        <span class="text-danger" asp-validation-for="Email"></span>
+    </div>
+
+    <div>
+        <button class="btn btn-success" type="submit">Salvar</button>
+        <a class="btn btn btn-danger" asp-controller="Vistoriador" asp-action="Index">Cancelar</a>
+    </div>
+</form>

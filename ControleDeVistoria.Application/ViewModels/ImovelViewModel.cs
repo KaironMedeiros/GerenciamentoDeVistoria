@@ -1,5 +1,4 @@
 ﻿using ControleDeVistoria.Domain.Entities;
-using ControleDeVistoria.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,13 +11,13 @@ namespace ControleDeVistoria.Application.ViewModels
     public class ImovelViewModel
     {
         public int Id { get; set; }
+        public string IdUser { get; set; } = string.Empty;
         [Required(ErrorMessage = "Campo Tipo abrigatório")]
-        public string IdUser { get; set; }
-        public TipoImovel TipoImovel { get; set; }
+        public string TipoImovel { get; set; } = string.Empty;
         [Required(ErrorMessage = "Campo situação  abrigatório")]
-        public SituacaoImovel Situacao { get; set; }
-        public Endereco? Endereco { get; set; }
-        public Locatario? Locatario { get; set; }
-        public Vistoria? Vistoria { get; set; }
+        public string Situacao { get; set; } = string.Empty;
+        public EnderecoViewModel? Endereco { get; set; }
+        public LocatarioViewModel? Locatario { get; set; }
+        public VistoriaViewModel? Vistoria { get; set; }
     }
 }

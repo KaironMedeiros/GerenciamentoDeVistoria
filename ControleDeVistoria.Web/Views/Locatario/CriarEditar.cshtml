@@ -1,0 +1,49 @@
+﻿@model ControleDeVistoria.Application.ViewModels.LocatarioViewModel
+
+@{
+    if (Context.Request.RouteValues.ContainsKey("id"))
+        ViewBag.Subtitulo = "Alteração de dados";
+    else
+        ViewBag.Subtitulo = "Novo Locatário";
+}
+
+<h3 class="text-primary">@ViewBag.Subtitulo</h3>
+<hr>
+
+<form class="row g-3" asp-action="CriarEditar" method="post">
+
+    <input type="hidden" asp-for="@Model.ImovelId">
+
+    <div class="col-md-5">
+        <label asp-for="Nome" class="form-label subTitulo">Nome</label>
+        <input type="text" asp-for="Nome" class="form-control">
+        <span class="text-danger" asp-validation-for="Nome"></span>
+
+    </div>
+    <div class="col-md-5">
+        <label asp-for="CPF" class="form-label subTitulo">CPF</label>
+        <input type="text" asp-for="CPF" class="form-control">
+        <span class="text-danger" asp-validation-for="CPF"></span>
+
+    </div>
+    <div class="col-5">
+        <label asp-for="Telefone" class="form-label subTitulo">Telefone</label>
+        <input type="text" asp-for="Telefone" class="form-control">
+        <span class="text-danger" asp-validation-for="Telefone"></span>
+    </div>
+    <div class="col-md-2">
+        <label asp-for="DataEntrada" class="form-label subTitulo">Data de ocupação</label>
+        <input type="date" asp-for="DataEntrada" class="form-control">
+        <span class="text-danger" asp-validation-for="DataEntrada"></span>
+    </div>
+    <div class="col-md-2">
+        <label asp-for="DataSaida" class="form-label subTitulo">Data de desocupação</label>
+        <input type="date" asp-for="DataSaida" class="form-control">
+        <span class="text-danger" asp-validation-for="DataSaida"></span>
+    </div>
+
+    <div>
+        <button class="btn btn-success" asp-action="CriarEditar" type="submit">Salvar</button>
+        <a class="btn btn btn-danger" asp-controller="Imovel" asp-action="Index">Cancelar</a>
+    </div>
+</form>

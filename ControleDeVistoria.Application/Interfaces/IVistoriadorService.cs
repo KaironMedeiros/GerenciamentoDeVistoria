@@ -10,8 +10,8 @@ namespace ControleDeVistoria.Application.Interfaces
 {
     public interface IVistoriadorService
     {
-        VistoriadorViewModel BuscarPorId(int id);
-        ICollection<VistoriadorViewModel> BuscarTodos();
+        Task<VistoriadorViewModel> BuscarPorId(int id);
+        Task<ICollection<VistoriadorViewModel>> BuscarTodos();
         void Atualizar(VistoriadorViewModel vistoriador);
         void Adicionar(VistoriadorViewModel vistoriador);
         bool IdExiste(int id);

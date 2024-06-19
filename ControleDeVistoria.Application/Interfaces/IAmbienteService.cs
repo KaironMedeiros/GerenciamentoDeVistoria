@@ -10,7 +10,7 @@ namespace ControleDeVistoria.Application.Interfaces
 {
     public interface IAmbienteService
     {
-        AmbienteViewModel BuscarPorId(int id);
+        Task<AmbienteViewModel> BuscarPorId(int id);
         void Adicionar(AmbienteViewModel ambiente);
         bool IdExiste(int id);
         void Excluir(int id);

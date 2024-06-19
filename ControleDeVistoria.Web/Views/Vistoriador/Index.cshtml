@@ -1,0 +1,50 @@
+﻿@model ICollection<ControleDeVistoria.Application.ViewModels.VistoriadorViewModel>
+
+@{
+    ViewBag.Subtitulo = "Listagem de Vistoriadores";
+}
+
+<header class="d-flex justify-content-between align-items-center">
+    <div>
+        <h1 class="text-primary">@ViewBag.Subtitulo</h1>
+    </div>
+    <div>
+        <a asp-action="CriarEditar" class="btn btn-primary">Novo Vistoriador</a>
+    </div>
+</header>
+<hr>
+
+<partial name="_Mensagem"></partial>
+
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table table-striped tabela-imovel">
+        <thead>
+            <tr>
+                <th>Vistoriador</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var vistoriador in Model)
+            {
+                <tr>
+                    <td>
+                        <div><span class="subTitulo">Código:</span> @vistoriador.Id</div>
+                        <div><span class="subTitulo">Nome:</span> @vistoriador.Nome</div>
+                        <div><span class="subTitulo">Tel:</span> @vistoriador.Telefone</div>
+                        <div><span class="subTitulo">E-mail:</span> @vistoriador.Email</div>
+                    </td>
+                    <td class="btnLista">
+                        <a asp-action="CriarEditar" asp-route-id="@vistoriador.Id" class="btn btn-sm btn-success"><i class="bi bi-pencil-square" title="Editar vistoriador"></i></a>
+                        <a asp-action="ExcluirConfirmacao" asp-route-id="@vistoriador.Id" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill" title="Excluir vistoriador"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Não há nenhuma vistoriador cadastrado.</p>
+}

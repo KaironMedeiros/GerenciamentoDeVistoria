@@ -16,40 +16,46 @@ namespace ControleDeVistoria.Application.Services
         private IVistoriaRepositorio _vistoriaRepositorio;
         private readonly IMapper _mapper;
 
-        public VistoriaViewModel BuscarPorId(int id)
+        public VistoriaService(IVistoriaRepositorio vistoriaRepositorio, IMapper mapper)
         {
-            var vistoria = _vistoriaRepositorio.BuscarPorId(id);
+            _vistoriaRepositorio = vistoriaRepositorio;
+            _mapper = mapper;
+        }
+
+        public async Task<VistoriaViewModel> BuscarPorId(int id)
+        {
+            var vistoria = await _vistoriaRepositorio.BuscarPorId(id);
             return _mapper.Map<VistoriaViewModel>(vistoria);
         }
 
-        public VistoriaViewModel BuscarPorIdImovel(int id)
+        public async Task<VistoriaViewModel> BuscarPorIdImovel(int id)
         {
-            var vistoria = _vistoriaRepositorio.BuscarPorIdImovel(id);
+            var vistoria = await _vistoriaRepositorio.BuscarPorIdImovel(id);
             return _mapper.Map<VistoriaViewModel>(vistoria);
         }
 
-        public VistoriadorViewModel BuscarPorIdVistoriador(int id)
+        public async Task<VistoriadorViewModel> BuscarPorIdVistoriador(int id)
         {
-            var vistoria = _vistoriaRepositorio.BuscarPorIdVistoriador(id);
+            var vistoria = await _vistoriaRepositorio.BuscarPorIdVistoriador(id);
             return _mapper.Map<VistoriadorViewModel>(vistoria);
         }
 
-        public ICollection<VistoriaViewModel> BuscarPorUsuario()
+        public async Task<ICollection<VistoriaViewModel>> BuscarPorUsuario()
         {
-            var vistorias = _vistoriaRepositorio.BuscarPorUsuario();
+            var vistorias = await _vistoriaRepositorio.BuscarPorUsuario();
             return _mapper.Map<ICollection<VistoriaViewModel>>(vistorias);
 
         }
 
-        public ICollection<VistoriaViewModel> BuscarTodos()
+        public async Task<ICollection<VistoriaViewModel>> BuscarTodos()
         {
-            var vistorias = _vistoriaRepositorio.BuscarTodos();
+            var vistorias = await _vistoriaRepositorio.BuscarTodos();
             return _mapper.Map<ICollection<VistoriaViewModel>>(vistorias);
         }
 
-        public ICollection<AmbienteViewModel> BuscarAmbientes(int vistoriaId)
+        public async Task<ICollection<AmbienteViewModel>> BuscarAmbientes(int vistoriaId)
         {
-            var ambientes = _vistoriaRepositorio.BuscarAmbientes(vistoriaId);
+            var ambientes = await _vistoriaRepositorio.BuscarAmbientes(vistoriaId);
             return _mapper.Map<ICollection<AmbienteViewModel>>(ambientes);
         }
 
@@ -72,7 +78,7 @@ namespace ControleDeVistoria.Application.Services
 
         public void Excluir(int id)
         {
-            var vistoria = _vistoriaRepositorio.BuscarPorId(id);
+            var vistoria = _vistoriaRepositorio.BuscarPorId(id).Result;
             _vistoriaRepositorio.Excluir(vistoria);
         }
     }

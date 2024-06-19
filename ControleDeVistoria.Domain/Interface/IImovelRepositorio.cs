@@ -4,9 +4,9 @@ namespace ControleDeVistoria.Domain.Interface
 {
     public interface IImovelRepositorio
     {
-        Imovel BuscarPorId(int id);
-        ICollection<Imovel> BuscarTodos();
-        ICollection<Imovel> BuscarPorUsuario(); 
+        Task<Imovel> BuscarPorId(int id);
+        Task<ICollection<Imovel>> BuscarTodos();
+        Task<ICollection<Imovel>> BuscarPorUsuario(); 
         Imovel Atualizar(Imovel imovel);
         Imovel Adicionar(Imovel imovel);
         bool IdExiste(int id);

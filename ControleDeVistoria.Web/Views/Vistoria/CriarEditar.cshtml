@@ -1,0 +1,57 @@
+﻿@model ControleDeVistoria.Application.ViewModels.VistoriaViewModel
+
+@{
+    if (Context.Request.RouteValues.ContainsKey("id"))
+        ViewBag.Subtitulo = "Alterar dados da vistoria";
+    else
+        ViewBag.Subtitulo = "Nova vistoria";
+}
+
+<h3 class="text-primary">@ViewBag.Subtitulo</h3>
+<hr>
+
+<form class="row g-3" asp-action="CriarEditar" method="post">
+
+    <input type="hidden" asp-for="@Model.ImovelId">
+    <input type="hidden" asp-for="IdUser" value=@ViewData["UserID"]>
+
+    @if (!Context.Request.RouteValues.ContainsKey("id"))
+    {
+        <div class="col-md-5">
+            <label asp-for="VistoriadorId" class="form-label subTitulo">Digite o código do vistoriador</label>
+            <input type="text" asp-for="VistoriadorId" class="form-control">
+            <span class="text-danger" asp-validation-for="VistoriadorId"></span>
+        </div>
+    }
+
+    <div class="col-md-2">
+        <label asp-for="TipoVistoria" class="form-label subTitulo">Tipo</label>
+        <select class="form-select" asp-for="TipoVistoria">
+            <option selected></option>
+            <option value="1">Inicial</option>
+            <option value="2">Final</option>
+        </select>
+        <span class="text-danger" asp-validation-for="TipoVistoria"></span>
+    </div>
+    <div class="col-md-5">
+        <label asp-for="MedidorAgua" class="form-label subTitulo">Informe o medidor de água</label>
+        <input type="text" asp-for="MedidorAgua" class="form-control">
+        <span class="text-danger" asp-validation-for="MedidorAgua"></span>
+    </div>
+    <div class="col-md-5">
+        <label asp-for="MedidorEnergia" class="form-label subTitulo">Informe o medidor de energia</label>
+        <input type="text" asp-for="MedidorEnergia" class="form-control">
+        <span class="text-danger" asp-validation-for="MedidorEnergia"></span>
+    </div>
+    <div class="col-md-2">
+        <label asp-for="DataVistoria" class="form-label subTitulo">Data da vistoria</label>
+        <input type="date" asp-for="DataVistoria" class="form-control">
+        <span class="text-danger" asp-validation-for="DataVistoria"></span>
+    </div>
+
+    <div>
+        <button class="btn btn-success" type="submit">Salvar</button>
+        <a class="btn btn btn-danger" asp-controller="Vistoria" asp-action="Visualizar">Cancelar</a>
+    </div>
+
+</form>

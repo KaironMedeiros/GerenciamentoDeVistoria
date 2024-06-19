@@ -10,9 +10,9 @@ namespace ControleDeVistoria.Application.Interfaces
 {
     public interface IImovelService
     {
-        ImovelViewModel BuscarPorId(int id); 
-        ICollection<ImovelViewModel> BuscarTodos();
-        ICollection<ImovelViewModel> BuscarPorUsuario();
+        Task<ImovelViewModel> BuscarPorId(int id); 
+        Task<ICollection<ImovelViewModel>> BuscarTodos();
+        Task<ICollection<ImovelViewModel>> BuscarPorUsuario();
         void Atualizar(ImovelViewModel imovel);
         void Adicionar(ImovelViewModel imovel);
         bool IdExiste(int id);
